@@ -10,6 +10,7 @@ on:
   push:
     branches:
       - main
+      - prepare
     paths:
       - .github/workflows/infra.yml
       - infra/**
@@ -29,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ env.tf_actions_working_dir }}
+        working-directory: lz
     permissions:
       pull-requests: write
     steps:
