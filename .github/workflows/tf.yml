@@ -9,11 +9,10 @@ permissions:
 on:
   push:
     branches:
-      - main
       - prepare
     paths:
-      - .github/workflows/infra.yml
-      - infra/**
+      - .github/workflows/tf.yml
+      - lz/**
   pull_request:
     branches:
       - main
