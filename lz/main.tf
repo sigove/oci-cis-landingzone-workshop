@@ -15,7 +15,7 @@ module "lz" {
 
   region                              = var.region
   tenancy_ocid                        = var.tenancy_ocid
-  existing_enclosing_compartment_ocid = "ocid1.compartment.oc1..aaaaaaaaxjbavrkhob2ospypahsaoy6nvuwgnrqcspqjaoy2fgkzj7ne2gaa"
+  existing_enclosing_compartment_ocid = "ocid1.compartment.oc1..aaaaaaaaavdeqf2kk4t5h3ryxj4htdsk7yrdz4xpdz47llfgmsq54dlk4hxa"
   env_advanced_options                = true
   policies_in_root_compartment        = "USE"
   vcn_cidrs                           = ["10.0.1.0/24", "10.0.2.0/24"]

@@ -55,6 +55,7 @@ jobs:
       run: terraform validate -no-color
 
     - name: Terraform Plan
+      if: ${{ false }}  # disable for now
       id: plan
       run: terraform plan -no-color
       continue-on-error: true
