@@ -29,5 +29,5 @@ module "lz" {
   network_admin_email_endpoints       = ["example@example.com"]
   security_admin_email_endpoints      = ["example@example.com"]
   enable_cloud_guard                  = false
-  service_label                       = "seblziac01"
+  service_label                       = "seblz01"
 }
