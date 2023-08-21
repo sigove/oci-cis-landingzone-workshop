@@ -7,7 +7,7 @@ export PATH="$HOME/gh_2.32.1_linux_386/bin/:$PATH"
 # Authenticate to github and get also the user scope
 gh auth login -s user
 
-gh repo clone oci-cis-landingzone-workshop-nose
+gh repo clone saguadob/oci-cis-landingzone-workshop-nose
 cd oci-cis-landingzone-workshop-nose
 
 git config user.name "$(gh api user -q .login)"
