@@ -127,7 +127,7 @@ speculative-run:
         uses: oracle-actions/run-oci-cli-command@v1
         id: find-compartment-id
         with:
-          command: 'resource-manager stack get-stack-tf-state --file oci-tf.tfstate --stack-id ${{ OCI_LZ_STACK_ID }}'
+          command: 'resource-manager stack get-stack-tf-state --file oci-tf.tfstate --stack-id "$OCI_LZ_STACK_ID"'
           query: "data[?name=='testing'].id"
 
       - name: Create PR git connection
