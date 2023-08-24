@@ -39,7 +39,7 @@ jobs:
       id: validate
       run: terraform validate -no-color
 
-  my-instances:
+  speculative-run:
     runs-on: ubuntu-latest
     name: List the display name and shape of the instances in my compartment
     env:
