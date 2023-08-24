@@ -8,11 +8,11 @@ export PATH="$HOME/gh_2.32.1_linux_386/bin/:$PATH"
 # Authenticate to github and get also the user scope
 gh auth login -s user -h github.com -p https -w
 
-gh repo clone oci-cis-landingzone-workshop-nose
-cd oci-cis-landingzone-workshop-nose
+gh repo fork saguadob/oci-cis-landingzone-workshop-nose --fork-name oci-cis-landingzone-workshop --clone --remote=true --remote-name=origin
+cd oci-cis-landingzone-workshop
 
 git config user.name "$(gh api user -q .login)"
 git config user.email "$(gh api user/public_emails -q first.email)"
-gh repo set-default "$(gh api user -q .login)/oci-cis-landingzone-workshop-nose"
+gh repo set-default "$(gh api user -q .login)/oci-cis-landingzone-workshop"
 
  
