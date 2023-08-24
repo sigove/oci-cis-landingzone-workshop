@@ -48,7 +48,6 @@ jobs:
       OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
       OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
       OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
-      OCI_LZ_STACK_ID: ${{ secrets.OCI_LZ_STACK_ID }}
     steps:
       - uses: hashicorp/setup-terraform@v2
         with:
@@ -58,7 +57,7 @@ jobs:
         uses: oracle-actions/run-oci-cli-command@v1
         id: find-compartment-id
         with:
-          command: 'resource-manager stack get-stack-tf-state --file oci-tf.tfstate --stack-id $OCI_LZ_STACK_ID'
+          command: 'resource-manager stack get-stack-tf-state --file oci-tf.tfstate --stack-id "${{ vars.OCI_LZ_STACK_ID }}"'
           query: "data[?name=='testing'].id"
 
       - name: Create PR git connection
