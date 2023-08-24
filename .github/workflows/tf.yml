@@ -72,6 +72,7 @@ jobs:
         with:
           command: 'resource-manager stack create-from-git-provider --compartment-id "${{ secrets.OCI_CLI_TENANCY }}" --config-source-configuration-source-provider-id "${{ steps.create-gh-pr-git-config.outputs.output }}" --config-source-branch-name "refs/pull/${{ github.event.number }}/head" --config-source-repository-url "https://github.com/${{ github.repository }}" --config-source-working-directory lz --display-name "stack-gh-pr-${{ github.event.number }}-action-${{ github.run_id }}" --terraform-version "1.2.x" --variables "{\"tenancy_ocid\":\"${{ secrets.OCI_CLI_TENANCY }}\" , \"region\":\"${{ secrets.OCI_CLI_REGION }}\"}"'
           query: "data.id"
+          silent: false
       
       - name: Import current stack
         uses: oracle-actions/run-oci-cli-command@v1.1.1
@@ -164,3 +165,10 @@ jobs:
         with:
           command: 'resource-manager stack delete --stack-id "${{ steps.create-gh-pr-stack.outputs.raw_output }}" --force'
      
+      - name: Get speculative plan
+        uses: oracle-actions/run-oci-cli-command@v1.1.1
+        id: cleanup-gh-pr-git-config
+        if: ${{ failure() && steps.create-gh-pr-git-config.outcome == 'success' }}
+        continue-on-error: true
+        with:
+          command: 'resource-manager configuration-source-provider delete --configuration-source-provider-id "${{ steps.create-gh-pr-git-config.outputs.raw_output }}" --force'
