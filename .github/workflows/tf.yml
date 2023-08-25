@@ -179,20 +179,20 @@ jobs:
               })
             }
   
-      - name: Get speculative plan
-        uses: oracle-actions/run-oci-cli-command@v1.1.1
-        id: cleanup-gh-pr-stack
-        if: ${{ failure() && steps.create-gh-pr-stack.outcome == 'success' }}
-        continue-on-error: true
-        with:
-          command: 'resource-manager stack delete --stack-id ${{ fromJson(steps.create-gh-pr-stack.outputs.output) }} --force'
-          silent: false
-     
-      - name: Get speculative plan
-        uses: oracle-actions/run-oci-cli-command@v1.1.1
-        id: cleanup-gh-pr-git-config
-        if: ${{ failure() && steps.create-gh-pr-git-config.outcome == 'success' }}
-        continue-on-error: true
-        with:
-          command: 'resource-manager configuration-source-provider delete --configuration-source-provider-id ${{ fromJson(steps.create-gh-pr-git-config.outputs.output) }} --force'
-          silent: false
+      #- name: Get speculative plan
+      #  uses: oracle-actions/run-oci-cli-command@v1.1.1
+      #  id: cleanup-gh-pr-stack
+      #  if: ${{ failure() && steps.create-gh-pr-stack.outcome == 'success' }}
+      #  continue-on-error: true
+      #  with:
+      #    command: 'resource-manager stack delete --stack-id ${{ fromJson(steps.create-gh-pr-stack.outputs.output) }} --force'
+      #    silent: false
+     #
+      #- name: Get speculative plan
+      #  uses: oracle-actions/run-oci-cli-command@v1.1.1
+      #  id: cleanup-gh-pr-git-config
+      #  if: ${{ failure() && steps.create-gh-pr-git-config.outcome == 'success' }}
+      #  continue-on-error: true
+      #  with:
+      #    command: 'resource-manager configuration-source-provider delete --configuration-source-provider-id ${{ fromJson(steps.create-gh-pr-git-config.outputs.output) }} --force'
+      #    silent: false
