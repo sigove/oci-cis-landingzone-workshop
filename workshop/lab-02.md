@@ -31,52 +31,43 @@ permissions:
       pull-requests: write
 
 on:
-  push:
-    branches:
-      - prepare
-    paths:
-      - .github/workflows/tf.yml
-      - config/**
-      - pre-config/**
-      - modules/**
-      - lz/**
   pull_request:
     branches:
       - main
-    paths:
-      - .github/workflows/tf.yml
-      - config/**
-      - pre-config/**
-      - modules/**
-      - lz/**
 
 jobs:
-  terraform:
-    name: "Terraform"
+  speculative-run:
     runs-on: ubuntu-latest
+    name: TF CI/CD
+    env:
+      OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
+      OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
+      OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
+      OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
+      OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
     defaults:
       run:
         working-directory: lz
     permissions:
       pull-requests: write
     steps:
-    - uses: actions/checkout@v3
-    - uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: 1.2.9
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.2.9
 
-    - name: Terraform fmt
-      id: fmt
-      run: terraform fmt -check
-      continue-on-error: true
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
 
-    - name: Terraform Init
-      id: init
-      run: terraform init
+      - name: Terraform Init
+        id: init
+        run: terraform init
 
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate -no-color
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
 ```
 
 </details>
@@ -101,3 +92,14 @@ gh secret set OCI_CLI_FINGERPRINT --body "$KEY_FINGERPRINT"
 gh secret set OCI_CLI_KEY_CONTENT < ~/oci_api_key.pem
 gh variable set OCI_LZ_STACK_ID --body "$OCI_LZ_STACK_ID"
 ```
+
+Then we will add the following job
+
+<details>
+<summary>tf.yml</summary>
+
+```yaml
+      
+```
+
+</details>

@@ -32,7 +32,7 @@ oci resource-manager stack create-from-git-provider --compartment-id "$OCI_TENAN
 
 ## Task 2 - Analize Folder structure
 
-While the LZ is being deployed, lets analyze the conents of the repository. Go to the [terraform guide](../terraform.md).
+While the LZ is being deployed, lets analyze the components of the repository. Go to the [terraform guide](../terraform.md).
 
 ## Task 3 - TF Plan
 
