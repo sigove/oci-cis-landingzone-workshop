@@ -4,6 +4,7 @@
 wget https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_386.tar.gz -O gh.tar.gz
 tar -xf gh.tar.gz
 export PATH="$HOME/gh_2.32.1_linux_386/bin/:$PATH"
+echo 'export PATH="$HOME/workshop/gh_2.32.1_linux_386/bin/:$PATH"' >> ~/.bashrc
 
 # Authenticate to github and get also the user scope
 gh auth login -s user -h github.com -p https -w
